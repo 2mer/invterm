@@ -1,0 +1,1 @@
+export default Intl.NumberFormat('en', { notation: 'compact' });
