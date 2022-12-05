@@ -15,6 +15,7 @@ import { closeModal, openModal } from '@mantine/modals';
 import AddItemForm from './AddItemForm';
 import ItemStack from '../../db/ItemStack';
 import { addItemStack } from '../../db/api';
+import addItemTypeModal from '../../modals/addItemTypeModal';
 
 function AddItemStackForm({ item = '', count = 0, onSubmit = (e: any) => {} }) {
 	const items = useLiveQuery(() =>
@@ -55,20 +56,7 @@ function AddItemStackForm({ item = '', count = 0, onSubmit = (e: any) => {} }) {
 							<Text>Create '{query}'</Text>
 						</Group>
 					)}
-					onCreate={(query: string) => {
-						openModal({
-							modalId: 'addItemType',
-							title: 'Add item type',
-							children: (
-								<AddItemForm
-									name={query}
-									onSubmit={() => {
-										closeModal('addItemType');
-									}}
-								/>
-							),
-						});
-					}}
+					onCreate={addItemTypeModal}
 					data={items ?? []}
 					{...form.getInputProps('item')}
 				/>

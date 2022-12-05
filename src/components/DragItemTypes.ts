@@ -1,5 +1,7 @@
 enum DragItemTypes {
-	ITEMSTACK = 'ITEMSTACK'
+	ITEM = 'ITEM',
+	ITEMSTACK = 'ITEMSTACK',
+	RECIPE = 'RECIPE',
 }
 
 

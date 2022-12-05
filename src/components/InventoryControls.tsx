@@ -1,26 +1,14 @@
 import { Button, Group, TextInput } from '@mantine/core';
-import { closeModal, openModal } from '@mantine/modals';
 import { Plus } from 'tabler-icons-react';
-import AddItemStackForm from './forms/AddItemStackForm';
 
-function InventoryControls({ filter }) {
+function InventoryControls({
+	filter,
+	onAddClicked = () => {},
+	color = undefined as any,
+}) {
 	return (
 		<Group noWrap>
-			<Button
-				onClick={() =>
-					openModal({
-						modalId: 'addItemsModal',
-						title: 'Add items',
-						children: (
-							<AddItemStackForm
-								onSubmit={() => {
-									closeModal('addItemsModal');
-								}}
-							/>
-						),
-					})
-				}
-			>
+			<Button onClick={onAddClicked} color={color}>
 				<Plus /> ADD
 			</Button>
 			<TextInput

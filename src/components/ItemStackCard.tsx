@@ -15,25 +15,21 @@ import DragItemTypes from './DragItemTypes';
 import ItemStack from '../db/ItemStack';
 import DragDropTargets from './DragDropTargets';
 import { db } from '../db/db';
+import useDraggableCard from '../logic/useDraggableCard';
 
-function ItemStackCard({ itemStack }: { itemStack: ItemStack }) {
-	const [{ isDragging }, drag] = useDrag(
-		() => ({
+function ItemStackCard({
+	itemStack,
+	onDelete,
+}: {
+	itemStack: ItemStack;
+	onDelete: (gid: string) => void;
+}) {
+	const [, drag] = useDraggableCard(
+		{
 			type: DragItemTypes.ITEMSTACK,
 			item: { itemStack },
-			end: (item, monitor) => {
-				const dropResult: any = monitor.getDropResult();
-				if (item && dropResult) {
-					if (dropResult.id === DragDropTargets.DELETE) {
-						db.inventory.delete(item.itemStack.gid!);
-					}
-				}
-			},
-			collect: (monitor) => ({
-				isDragging: monitor.isDragging(),
-				handlerId: monitor.getHandlerId(),
-			}),
-		}),
+			onDelete,
+		},
 		[itemStack]
 	);
 

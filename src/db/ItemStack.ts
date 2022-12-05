@@ -1,4 +1,5 @@
 import AbstractEntity from "./AbstractEntity";
+import ICuid from "./ICuid";
 import Item from "./Item";
 
 export default class ItemStack extends AbstractEntity {
@@ -6,8 +7,8 @@ export default class ItemStack extends AbstractEntity {
 
 	constructor(
 		public count: number,
-		public itemId: string,
-		gid?: string
+		public itemId: ICuid,
+		gid?: ICuid
 	) {
 		super(gid);
 

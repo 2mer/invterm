@@ -3,9 +3,9 @@ import { useDrop } from 'react-dnd';
 import DragDropTargets from './DragDropTargets';
 import DragItemTypes from './DragItemTypes';
 
-function DeleteInventoryStack() {
+function DeleteDropTarget() {
 	const [{ canDrop, isOver }, drop] = useDrop(() => ({
-		accept: DragItemTypes.ITEMSTACK,
+		accept: [DragItemTypes.ITEMSTACK, DragItemTypes.ITEM],
 		drop: () => ({ id: DragDropTargets.DELETE }),
 		collect: (monitor) => ({
 			isOver: monitor.isOver(),
@@ -30,4 +30,4 @@ function DeleteInventoryStack() {
 	);
 }
 
-export default DeleteInventoryStack;
+export default DeleteDropTarget;
